@@ -1,0 +1,12 @@
+{
+  "name": "sandbox",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch": "tsc --watch",
+    "genPassword": "tsc && node utils/js/genPassword.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

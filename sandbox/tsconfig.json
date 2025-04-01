@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2024",
+    "module": "ESNext",
+    "outDir": "utils/js",
+    "rootDir": "utils",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["utils/*"],
+  "exclude": ["node_modules"]
+}
