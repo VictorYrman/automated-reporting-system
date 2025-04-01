@@ -24,4 +24,4 @@ client/*.sln
 client/*.sw?
 
 # Sandbox
-sandbox/**/*.js/
+sandbox/utils/js/*.js/
