@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import "../assets/styles/scss/table.scss";
+import { useAuth } from "../contexts/AuthContext";
 import Modal from "../components/Modal";
+import "../assets/styles/scss/table.scss";
 
 const Table = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const location = useLocation();
-  const role = location.state?.role;
+  const { role, isAuth } = useAuth();
 
-  if (!role) {
+  if (!isAuth) {
     return (
       <>
         <div className="container table__container">
@@ -16,7 +15,7 @@ const Table = () => {
             Работа с <span className="text-secondary">таблицами</span> системы
           </h2>
           <p className="fw-light table__paragraph">
-            Чтобы получить доступ к этой странице, войдите в аккаунт нажава на
+            Чтобы получить доступ к этой странице, войдите в аккаунт, нажав на
             кнопку <span className="fw-semibold">"Войти"</span> в заголовке или
             на кнопку <span className="fw-semibold">"Получить доступ"</span>{" "}
             нижe
@@ -36,15 +35,30 @@ const Table = () => {
 
   return (
     <div className="container">
-      <h2>Работа с таблицами системы</h2>
       {role === "Преподаватель" && (
-        <p className="table__paragraph">Преподаватель</p>
+        <h2 className="table__title">
+          Работа с таблицами системы (
+          <span className="text-secondary">Преподаватель</span>)
+        </h2>
       )}
       {role === "Заведующий кафедрой" && (
-        <p className="table__paragraph">Заведующий кафедрой</p>
+        <h2 className="table__title">
+          Работа с таблицами системы (
+          <span className="text-secondary">Заведующий кафедрой</span>)
+        </h2>
       )}
-      {role === "Проректор" && <p className="table__paragraph">Проректор</p>}
-      {role === "Ректор" && <p className="table__paragraph">Ректор</p>}
+      {role === "Проректор" && (
+        <h2 className="table__title">
+          Работа с таблицами системы (
+          <span className="text-secondary">Проректор</span>)
+        </h2>
+      )}
+      {role === "Ректор" && (
+        <h2 className="table__title">
+          Работа с таблицами системы (
+          <span className="text-secondary">Ректор</span>)
+        </h2>
+      )}
     </div>
   );
 };

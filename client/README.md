@@ -1,54 +1,28 @@
-# React + TypeScript + Vite
+# Директория frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Технологический стек
 
-Currently, two official plugins are available:
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40" width="40" alt="HTML5" title="HTML5"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="40" width="40" alt="CSS3" title="CSS3"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40" width="40" alt="JavaScript" title="JavaScript"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastify/fastify-original.svg" height="40" width="40" alt="Fastify" title="Fastify"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="40" width="40" alt="Node.js" title="Node.js"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="40" width="40" alt="MongoDB" title="MongoDB"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" height="40" width="40" alt="Git" title="Git"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jwt/jwt-plain.svg" height="40" width="40" alt="JWT" title="JWT" />
+  <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" height="40" width="40" alt="httpOnly Cookie" title="httpOnly Cookie (secure)" />
+</div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Описание
 
-## Expanding the ESLint configuration
+Директория frontend представляет собой клиентскую часть веб-приложения, реализованную на базе библиотеки React с использованием React Router, модальной авторизации и управления ролями пользователей. Приложение построено по компонентной архитектуре, поддерживает адаптивный дизайн, а также защищённые маршруты на основе аутентификации.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Основные характеристики
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+> - Маршрутизация: реализована через react-router-dom
+> - Авторизация: на основе JWT с access/refresh token, авторизация хранится в localStorage, есть автообновление токена при монтировании
+> - Роли пользователей: определяют доступ к различным частям интерфейса (Преподаватель, Заведующий кафедрой, Проректор, Ректор)
+> - Модальное окно входа: используется компонент Modal с формой AuthForm
+> - Адаптивность: поддержка мобильных и десктопных разрешений с бургер-меню
+> - Стилизация: SCSS с разделением на модули по компонентам и БЭМ-нейминг

@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import axios from "axios";
 
 type FormData = {
   email: string;
   password: string;
+  rememberMe: boolean;
 };
 
 type AuthFormProps = {
@@ -12,6 +14,7 @@ type AuthFormProps = {
 };
 
 const AuthForm = ({ onSuccess }: AuthFormProps) => {
+  const { login } = useAuth();
   const navigate = useNavigate();
   const {
     register,
@@ -22,21 +25,24 @@ const AuthForm = ({ onSuccess }: AuthFormProps) => {
   const submitHandler = async (data: FormData) => {
     const response = await axios.post(
       "http://localhost:9999/login",
-      { email: data.email, password: data.password },
       {
+        email: data.email,
+        password: data.password,
+        rememberMe: data.rememberMe,
+      },
+      {
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
       }
     );
 
-    const role = response.data.role;
-    console.info(role);
+    const { accessToken, role } = response.data;
+    login(accessToken, role);
 
     onSuccess?.();
-    navigate("/table", {
-      state: { role },
-    });
+    navigate("/table");
   };
 
   return (
@@ -90,7 +96,7 @@ const AuthForm = ({ onSuccess }: AuthFormProps) => {
       </div>
       <div className="auth__footer">
         <div className="auth__footer__input-wrapper">
-          <input type="checkbox" id="rememberMe" />
+          <input {...register("rememberMe")} type="checkbox" id="rememberMe" />
           <label className="auth__label" htmlFor="rememberMe">
             Запомнить меня
           </label>

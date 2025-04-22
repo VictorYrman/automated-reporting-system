@@ -1,14 +1,14 @@
+.table__title,
+.table__paragraph {
+  text-align: center;
+}
+
 .table__container {
   max-width: 43.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-
-  .table__title,
-  .table__paragraph {
-    text-align: center;
-  }
 
   .table__btn {
     display: flex;

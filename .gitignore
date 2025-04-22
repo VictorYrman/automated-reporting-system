@@ -50,6 +50,7 @@ server/*.sw?
 
 server/js
 server/.env
+server/requests.http
 
 # Sandbox
-sandbox/utils/js/*.js/
+sandbox/utils/js

@@ -3,12 +3,15 @@ import Modal from "./Modal";
 import "../assets/styles/scss/header.scss";
 import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import Logo from "../assets/images/icons/logo.svg";
 import LogoPrimary from "../assets/images/icons/logo-primary.svg";
 import BurgerMenu from "../assets/images/icons/burger-menu.svg";
 import ArrowRightDark from "../assets/images/icons/arrow-right-dark.svg";
+import axios from "axios";
 
 const Header = () => {
+  const { isAuth, logout } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const burgerButtonRef = useRef<HTMLButtonElement>(null);
@@ -37,6 +40,13 @@ const Header = () => {
     menuRef.current?.classList.add("burger-menu--closed");
   };
 
+  const logoutHandler = async () => {
+    await axios.post("http://localhost:9999/logout", {
+      withCredentials: true,
+    });
+    logout();
+  };
+
   return (
     <>
       <header className="header">
@@ -53,13 +63,23 @@ const Header = () => {
           </div>
 
           <div className="header__buttons">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              type="button"
-              className="btn btn--secondary fw-semibold header__btn"
-            >
-              Войти
-            </button>
+            {isAuth ? (
+              <button
+                onClick={logoutHandler}
+                type="button"
+                className="btn btn--secondary fw-semibold header__btn"
+              >
+                Выйти
+              </button>
+            ) : (
+              <button
+                onClick={() => setIsModalOpen(true)}
+                type="button"
+                className="btn btn--secondary fw-semibold header__btn"
+              >
+                Войти
+              </button>
+            )}
 
             <button
               ref={burgerButtonRef}
@@ -119,16 +139,29 @@ const Header = () => {
             </ul>
           </nav>
 
-          <button
-            onClick={() => {
-              setIsModalOpen(true);
-              menuRef.current?.classList.remove("burger-menu--opened");
-              menuRef.current?.classList.add("burger-menu--closed");
-            }}
-            className="btn btn--secondary fw-semibold"
-          >
-            Войти
-          </button>
+          {isAuth ? (
+            <button
+              onClick={() => {
+                logoutHandler();
+                menuRef.current?.classList.remove("burger-menu--opened");
+                menuRef.current?.classList.add("burger-menu--closed");
+              }}
+              className="btn btn--secondary fw-semibold"
+            >
+              Выйти
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setIsModalOpen(true);
+                menuRef.current?.classList.remove("burger-menu--opened");
+                menuRef.current?.classList.add("burger-menu--closed");
+              }}
+              className="btn btn--secondary fw-semibold"
+            >
+              Войти
+            </button>
+          )}
         </div>
       </div>
     </>
