@@ -1,0 +1,18 @@
+@use "./variables.scss" as *;
+
+.footer {
+  color: $white-color;
+  background-color: $primary-color;
+  padding-block: 2rem;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .footer__rights {
+      text-align: center;
+      font-size: 0.875rem;
+    }
+  }
+}

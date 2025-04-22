@@ -1,0 +1,173 @@
+:root {
+  --primary-color: #1e3861;
+  --secondary-color: #0047b9;
+  --white-color: #ffffff;
+  --dark-color: #212121;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../../fonts/OpenSans-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../../fonts/OpenSans-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../../fonts/OpenSans-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../../fonts/OpenSans-SemiBold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../../fonts/OpenSans-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p,
+label {
+  font-size: 1.125rem;
+  line-height: 1.5em;
+}
+
+.container {
+  max-width: 87.5rem;
+  padding-inline: 2rem;
+  margin-inline: auto;
+}
+
+.fw-light {
+  font-weight: 300;
+}
+
+.fw-regular {
+  font-weight: 400;
+}
+
+.fw-medium {
+  font-weight: 500;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+/* .text-primary {
+  color: var(--primary-color);
+} */
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.logo {
+  width: 5rem;
+  height: 5rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.logo:active {
+  transform: translateY(1px);
+}
+
+.btn {
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem;
+  cursor: pointer;
+}
+
+/* .btn--primary {
+  color: var(--white-color);
+  background-color: var(--primary-color);
+} */
+
+.btn--secondary {
+  color: var(--white-color);
+  background-color: var(--secondary-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn--secondary:hover {
+  transform: scale(1.1);
+}
+
+.btn--secondary:active {
+  outline: 1px solid var(--white-color);
+  background-color: var(--primary-color);
+  transition-duration: 0.1s;
+}
+
+.input {
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem;
+  border: 1px solid var(--dark-color);
+}
+
+:focus {
+  outline-color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .container {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    padding-inline: 1rem;
+  }
+}

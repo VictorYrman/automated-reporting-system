@@ -1,27 +1,20 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Table from "./pages/Table";
+import NotFound from "./pages/NotFound";
+import Layout from "./components/Layout";
 
 function App() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  useEffect(() => {
-    console.log(register);
-  });
-
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
-      <h1>Hello</h1>
-      <input {...register("firstName")} />
-      <input {...register("lastName", { required: true })} />
-      {errors.lastName && <p>Last name is required.</p>}
-      <input {...register("age", { pattern: /\d+/ })} />
-      {errors.age && <p>Please enter number for age.</p>}
-      <input type="submit" />
-    </form>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/table" element={<Table />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;

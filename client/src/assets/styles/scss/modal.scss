@@ -1,0 +1,147 @@
+@use "./variables.scss" as *;
+
+.modal {
+  background-color: $black-opacity-color;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  &__container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: $white-color;
+    min-width: 28rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: 0.5rem;
+    background-color: $primary-color;
+    padding-block: 1.25rem;
+
+    & > .modal__btn {
+      width: 2.5rem;
+      height: 1.25rem;
+      position: relative;
+      left: 100%;
+      transform: translateX(-32px);
+      background-color: transparent;
+      cursor: pointer;
+
+      .modal__img {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+
+    .auth__form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          gap: 0.625rem;
+
+          .auth__input {
+            font-size: 1.125rem;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+              background-color: transparent;
+              outline: 2px solid $white-color;
+            }
+
+            &:focus {
+              color: $white-color;
+              background-color: transparent;
+            }
+
+            &:hover::placeholder,
+            &:focus::placeholder {
+              color: $white-color;
+            }
+
+            &::placeholder {
+              font-size: 1.125rem;
+              opacity: 0.5;
+            }
+          }
+
+          .auth__error {
+            color: $red-color;
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      .auth__btn {
+        max-width: 30%;
+        align-self: flex-end;
+      }
+
+      .auth__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__input-wrapper {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+input[type="checkbox"] + label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+input[type="checkbox"] + label::before {
+  content: "";
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid $white-color;
+}
+
+input[type="checkbox"]:checked + label::before {
+  border-color: $secondary-color;
+  background-color: $secondary-color;
+  background-image: url("../../images/icons/check-mark.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+input[type="checkbox"]:focus + label::before {
+  outline: 2px solid $primary-color;
+  border-color: $white-color;
+}
+
+@media (max-width: 450px) {
+  .modal .modal__container {
+    min-width: 90%;
+  }
+}
