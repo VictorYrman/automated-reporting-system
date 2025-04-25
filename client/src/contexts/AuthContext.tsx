@@ -20,7 +20,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const useAuth = () => {
   const context = useContext(AuthContext);
 
-  if (!context) throw new Error("Какая-то ошибка");
+  if (!context) throw new Error("Ошибка контекста auth");
 
   return context;
 };

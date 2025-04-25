@@ -1,4 +1,4 @@
-import fastify from "fastify";
+import fastify, { FastifyInstance } from "fastify";
 import dotenv from "dotenv";
 import fastifyCors from "@fastify/cors";
 import fastifyJwt from "@fastify/jwt";
@@ -8,8 +8,8 @@ import { authRouter } from "./routes/auth.router.js";
 
 dotenv.config();
 
-const server = fastify();
-const PORT = Number(process.env.PORT);
+const server: FastifyInstance = fastify();
+const PORT: number = Number(process.env.PORT);
 
 server.register(fastifyCookie);
 server.register(fastifyCors, {
@@ -21,7 +21,7 @@ server.register(fastifyJwt, {
 });
 server.register(authRouter);
 
-const start = async () => {
+const start = async (): Promise<void> => {
   try {
     await setupDatabase(server);
     console.info("Сервер успешно подключён к БД!");

@@ -1,20 +1,22 @@
-import Nav from "./Nav";
-import Modal from "./Modal";
-import "../assets/styles/scss/header.scss";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { useModal } from "../contexts/ModalContext";
+import axios from "axios";
+import Nav from "./Nav";
 import Logo from "../assets/images/icons/logo.svg";
 import LogoPrimary from "../assets/images/icons/logo-primary.svg";
 import BurgerMenu from "../assets/images/icons/burger-menu.svg";
 import ArrowRightDark from "../assets/images/icons/arrow-right-dark.svg";
-import axios from "axios";
+import "../assets/styles/scss/header.scss";
 
 const Header = () => {
-  const { isAuth, logout } = useAuth();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const burgerButtonRef = useRef<HTMLButtonElement>(null);
+  const { isAuth, logout }: { isAuth: boolean; logout: () => void } = useAuth();
+  const { open }: { open: () => void } = useModal();
+  const menuRef: React.RefObject<HTMLDivElement | null> =
+    useRef<HTMLDivElement>(null);
+  const burgerButtonRef: React.RefObject<HTMLButtonElement | null> =
+    useRef<HTMLButtonElement>(null);
 
   const menuHandler = () => {
     menuRef.current?.classList.remove("burger-menu--closed");
@@ -73,7 +75,7 @@ const Header = () => {
               </button>
             ) : (
               <button
-                onClick={() => setIsModalOpen(true)}
+                onClick={open}
                 type="button"
                 className="btn btn--secondary fw-semibold header__btn"
               >
@@ -92,8 +94,6 @@ const Header = () => {
           </div>
         </div>
       </header>
-
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       <div ref={menuRef} className={"burger-menu"}>
         <div className="burger-menu__logo-btn">
@@ -153,7 +153,7 @@ const Header = () => {
           ) : (
             <button
               onClick={() => {
-                setIsModalOpen(true);
+                open();
                 menuRef.current?.classList.remove("burger-menu--opened");
                 menuRef.current?.classList.add("burger-menu--closed");
               }}

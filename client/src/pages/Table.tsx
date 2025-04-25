@@ -1,11 +1,10 @@
-import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import Modal from "../components/Modal";
+import { useModal } from "../contexts/ModalContext";
 import "../assets/styles/scss/table.scss";
 
 const Table = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { role, isAuth } = useAuth();
+  const { open }: { open: () => void } = useModal();
+  const { role, isAuth }: { role: string | null; isAuth: boolean } = useAuth();
 
   if (!isAuth) {
     return (
@@ -22,13 +21,12 @@ const Table = () => {
           </p>
           <button
             type="button"
-            onClick={() => setIsModalOpen(true)}
+            onClick={open}
             className="btn btn--secondary fw-semibold table__btn"
           >
             Получить доступ
           </button>
         </div>
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </>
     );
   }

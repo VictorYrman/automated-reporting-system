@@ -22,7 +22,7 @@
     background-color: $primary-color;
     padding-block: 1.25rem;
 
-    & > .modal__btn {
+    .modal__btn {
       width: 2.5rem;
       height: 1.25rem;
       position: relative;
@@ -30,10 +30,20 @@
       transform: translateX(-32px);
       background-color: transparent;
       cursor: pointer;
+      transition: transform 0.3s ease-in-out;
 
       .modal__img {
         width: 2.5rem;
         height: 2.5rem;
+        transition: transform 0.3s ease-in-out;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+        &:active {
+          transform: translateY(-1px);
+        }
       }
     }
 

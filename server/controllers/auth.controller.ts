@@ -1,6 +1,5 @@
 import { createHash } from "crypto";
 import dotenv from "dotenv";
-import { access } from "fs";
 
 dotenv.config();
 
@@ -8,7 +7,7 @@ export const loginHandler = async (request: any, reply: any) => {
   try {
     const { email, password, rememberMe } = request.body;
 
-    console.log(email, password, rememberMe);
+    console.info(email, password, rememberMe);
 
     const user = (
       await request.server.pg.query(`SELECT * FROM users WHERE email = $1`, [
@@ -26,7 +25,7 @@ export const loginHandler = async (request: any, reply: any) => {
     if (!passwordValid)
       return reply.code(401).send({ message: "Вы ввели неправильный пароль!" });
 
-    console.log(user);
+    console.info(user);
 
     const accessToken = await request.server.jwt.sign(
       {

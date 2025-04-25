@@ -1,4 +1,4 @@
-import { FastifyInstance } from "fastify";
+import { FastifyInstance, FastifyPluginOptions } from "fastify";
 import {
   loginOptions,
   logoutOptions,
@@ -7,8 +7,8 @@ import {
 
 export const authRouter = (
   server: FastifyInstance,
-  options: any,
-  done: any
+  options: FastifyPluginOptions,
+  done: () => void
 ) => {
   server.post("/login", loginOptions);
   server.post("/logout", logoutOptions);

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import axios from "axios";
 
@@ -9,13 +9,9 @@ type FormData = {
   rememberMe: boolean;
 };
 
-type AuthFormProps = {
-  onSuccess: () => void;
-};
-
-const AuthForm = ({ onSuccess }: AuthFormProps) => {
-  const { login } = useAuth();
-  const navigate = useNavigate();
+const AuthForm = ({ onSuccess }: { onSuccess: () => void }) => {
+  const { login }: { login: (token: string, role: string) => void } = useAuth();
+  const navigate: NavigateFunction = useNavigate();
   const {
     register,
     handleSubmit,

@@ -1,13 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../assets/styles/scss/home.scss";
-import Modal from "../components/Modal";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { useModal } from "../contexts/ModalContext";
+import "../assets/styles/scss/home.scss";
 
 const Home = () => {
-  const { isAuth } = useAuth();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
+  const { isAuth }: { isAuth: boolean } = useAuth();
+  const { open }: { open: () => void } = useModal();
+  const navigate: NavigateFunction = useNavigate();
 
   return (
     <>
@@ -32,7 +31,7 @@ const Home = () => {
           </button>
         ) : (
           <button
-            onClick={() => setIsModalOpen(true)}
+            onClick={open}
             type="button"
             className="btn btn--secondary fw-semibold home__btn"
           >
@@ -40,7 +39,6 @@ const Home = () => {
           </button>
         )}
       </div>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };
